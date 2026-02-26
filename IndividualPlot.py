@@ -53,16 +53,20 @@ amp, lam, freq = params
 xFunc = np.linspace(xWindow.min(), xWindow.max(), 1000)
 yFunc = DecayCos(xFunc, amp, lam, freq)
 
-# Plot
-plt.plot(xWindow, yWindow)
-plt.plot(xFunc, yFunc)
+#Plot
+fig, ax = plt.subplots()
 
-#Dont need this but nice to see
+ax.plot(xWindow, yWindow)
+ax.plot(xFunc, yFunc)
+
+#Don't need this but nice to see
 print(f"A: {amp}\nlambda: {lam}\nfreq: {freq}")
 
-# Labels
-plt.xlabel('Time (s)')
-plt.ylabel('Voltage (V)')
-plt.title('Plotting a model of a damped oscillator to the data collected on an oscilloscope')
-plt.legend(["Oscilloscope reading", "Model of damped Oscillator"], loc="upper right")
+
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Voltage (V)')
+ax.set_title('Plotting a model of a damped oscillator to the data collected on an oscilloscope')
+ax.legend(["Oscilloscope reading", "Model of damped Oscillator"], loc="upper right")
+ax.text(0.2, 0.98, f"$\\lambda$: {lam:.3f}\nf: {freq:.3f}", transform=ax.transAxes, verticalalignment='top', horizontalalignment='left')
+
 plt.show()
